@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.ColoredSolenoid;
 
@@ -66,9 +67,15 @@ public class SolenoidSubsystem extends SubsystemBase {
     }
 
     public void blink(int num) {
+        double start;
+        double now;
         for (int i = 0; i < num; i++) {
             turnAllOn();
-            //@todo add delay
+            start = Timer.getFPGATimestamp();
+            now = start;
+            while (now - start < 0.5){
+                now = Timer.getFPGATimestamp();
+            }
             turnAllOff();
         }
     }
