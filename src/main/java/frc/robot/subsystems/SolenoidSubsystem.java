@@ -68,6 +68,7 @@ public class SolenoidSubsystem extends SubsystemBase {
     public void blink(int num) {
         for (int i = 0; i < num; i++) {
             turnAllOn();
+            //@todo add delay
             turnAllOff();
         }
     }

@@ -11,7 +11,7 @@ public class SolenoidCommand extends CommandBase {
     public static double DELAY_START = 0.8;
     private double delay;
 
-    private SolenoidCommand() {
+    public SolenoidCommand() {
         subsystem = SolenoidSubsystem.getInstance();
         time = Timer.getFPGATimestamp();
         delay = DELAY_START;
@@ -19,12 +19,6 @@ public class SolenoidCommand extends CommandBase {
 
     @Override
     public void execute() {
-        if (subsystem.isPressed()) {
-            if (subsystem.check())
-                delay -= delay / 7;
-            else
-                subsystem.blink(1);
-        }
         double now = Timer.getFPGATimestamp();
         if (now - time >= delay) {
             subsystem.changeSolenoid();
@@ -33,7 +27,19 @@ public class SolenoidCommand extends CommandBase {
     }
 
     @Override
+    public boolean isFinished() {
+        if (subsystem.isPressed()) {
+            if (subsystem.check())
+                delay -= delay / 7;
+            else
+                return true;
+        }
+        return false;
+    }
+
+    @Override
     public void end(boolean interrupted) {
+        subsystem.blink(3);
         //@todo
     }
 }
