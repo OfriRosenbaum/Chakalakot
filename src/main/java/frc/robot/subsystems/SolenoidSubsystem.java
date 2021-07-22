@@ -65,23 +65,19 @@ public class SolenoidSubsystem extends SubsystemBase {
         }
     }
 
-    public void blink(int num){
-        for(int i =0;i<num;i++){
+    public void blink(int num) {
+        for (int i = 0; i < num; i++) {
             turnAllOn();
             turnAllOff();
         }
     }
 
-    private void turnAllOn(){
+    private void turnAllOn() {
         solenoids.forEach(solenoid -> solenoid.set(true));
     }
 
-    private void turnAllOff(){
+    private void turnAllOff() {
         solenoids.forEach(solenoid -> solenoid.set(false));
-    }
-
-    public List<ColoredSolenoid> getSolenoids() {
-        return solenoids;
     }
 
     public boolean check() {
