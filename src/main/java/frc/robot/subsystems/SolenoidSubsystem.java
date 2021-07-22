@@ -33,12 +33,12 @@ public class SolenoidSubsystem extends SubsystemBase {
     public void changeSolenoid() {
         int index = solenoids.indexOf(cur);
         cur.set(false);
+        ColoredSolenoid sol;
         if (index == 8) {
-            ColoredSolenoid sol = solenoids.get(0);
-            sol.set(true);
-            cur = sol;
+            sol = solenoids.get(0);
+        } else {
+            sol = solenoids.get(index + 1);
         }
-        ColoredSolenoid sol = solenoids.get(index + 1);
         sol.set(true);
         cur = sol;
         mid.set(false);
@@ -73,7 +73,7 @@ public class SolenoidSubsystem extends SubsystemBase {
             turnAllOn();
             start = Timer.getFPGATimestamp();
             now = start;
-            while (now - start < 0.5){
+            while (now - start < 0.5) {
                 now = Timer.getFPGATimestamp();
             }
             turnAllOff();
