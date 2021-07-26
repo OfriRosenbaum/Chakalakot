@@ -29,9 +29,10 @@ public class SolenoidCommand extends CommandBase {
     @Override
     public boolean isFinished() {
         if (subsystem.isPressed()) {
-            if (subsystem.check())
+            if (subsystem.check()) {
                 delay -= delay / 7;
-            else
+                subsystem.changeMiddle();
+            } else
                 return true;
         }
         return false;
@@ -40,6 +41,5 @@ public class SolenoidCommand extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         subsystem.blink(3);
-        //@todo
     }
 }

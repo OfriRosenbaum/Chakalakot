@@ -33,14 +33,15 @@ public class SolenoidSubsystem extends SubsystemBase {
     public void changeSolenoid() {
         int index = solenoids.indexOf(cur);
         cur.set(false);
-        ColoredSolenoid sol;
         if (index == 8) {
-            sol = solenoids.get(0);
+            cur = solenoids.get(0);
         } else {
-            sol = solenoids.get(index + 1);
+            cur = solenoids.get(index + 1);
         }
-        sol.set(true);
-        cur = sol;
+        cur.set(true);
+    }
+
+    public void changeMiddle(){
         mid.set(false);
         mid = middle.get(rn.nextInt(3));
         mid.set(true);
