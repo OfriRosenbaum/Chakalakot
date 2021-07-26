@@ -21,7 +21,7 @@ public class SolenoidCommand extends CommandBase {
     public void execute() {
         double now = Timer.getFPGATimestamp();
         if (now - time >= delay) {
-            subsystem.changeSolenoid();
+            subsystem.changeOuterSolenoid();
             time = now;
         }
     }
@@ -31,7 +31,7 @@ public class SolenoidCommand extends CommandBase {
         if (subsystem.isPressed()) {
             if (subsystem.check()) {
                 delay -= delay / 7;
-                subsystem.changeMiddle();
+                subsystem.changeMiddleSolenoid();
             } else
                 return true;
         }

@@ -30,7 +30,7 @@ public class SolenoidSubsystem extends SubsystemBase {
         mid.set(true);
     }
 
-    public void changeSolenoid() {
+    public void changeOuterSolenoid() {
         int index = solenoids.indexOf(cur);
         cur.set(false);
         if (index == 8) {
@@ -41,7 +41,7 @@ public class SolenoidSubsystem extends SubsystemBase {
         cur.set(true);
     }
 
-    public void changeMiddle(){
+    public void changeMiddleSolenoid(){
         mid.set(false);
         mid = middle.get(rn.nextInt(3));
         mid.set(true);
